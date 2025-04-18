@@ -21,8 +21,8 @@ public class TpSpringMvcSpringDataJpaThymeleafApplication implements CommandLine
 
     @Override
     public void run(String... args) throws Exception {
-      patientRepository.save(new Patient(null,"aitchrif",sdf.parse("2005-02-16"),true,16));
-      patientRepository.save(new Patient(null,"aitchrif2",sdf.parse("2005-03-16"),false,20));
-      patientRepository.save(new Patient(null,"aitchrif3",sdf.parse("2005-04-16"),false,30));
+     // patientRepository.save(new Patient(null,"aitchrif",sdf.parse("2005-02-16"),true,16));
+      //patientRepository.save(new Patient(null,"aitchrif2",sdf.parse("2005-03-16"),false,20));
+     // patientRepository.save(new Patient(null,"lucas",sdf.parse("2005-04-16"),false,30));
     }
 }

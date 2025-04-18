@@ -16,6 +16,13 @@
         List  Patients
     </div>
     <div class="card-body">
+        <form method="get" th:action="@{index}">
+            <label>KeyWord:</label>
+            <input type="text" name="keyword">
+            <button type="submit" class="btn btn-info"> Search </button>
+
+
+        </form>
         <table class="table">
         <thead>
         <tr> <th>ID</th> <th>Nom</th><th>DataNaissance</th><th>Malade</th><th>Score</th></tr>
