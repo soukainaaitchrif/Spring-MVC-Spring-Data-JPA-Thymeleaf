@@ -30,6 +30,7 @@ public class PatientController {
         model.addAttribute("Listpatients", patients.getContent());//Permet d’envoyer des données à la page HTML (Thymeleaf ).
         model.addAttribute("pages",new int[patients.getTotalPages()]);
         model.addAttribute("currentPage",page);
+        model.addAttribute("keyword",key);
         return "patients";
     }
 }
