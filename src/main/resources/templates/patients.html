@@ -1,8 +1,8 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 
-         layout:decorate="template1"
+      layout:decorate="template1"
 
 >
 
@@ -19,55 +19,62 @@
 
 
 <div layout:fragment="content1">
-<div class="container mt-2">
-<div class="card">
-    <div class="card-header">
-        List  Patients
+    <div class="container mt-2">
+        <div class="card">
+            <div class="card-header">
+                List  Patients
+            </div>
+            <div class="card-body">
+                <form method="get" th:action="@{index}">
+                    <label>KeyWord:</label>
+                    <input type="text" name="keyword" th:value="${keyword}">
+                    <button type="submit" class="btn btn-info">
+                        <i class="bi bi-search"></i></button>
+
+
+                </form>
+                <table class="table">
+                    <thead>
+                    <tr> <th>ID</th> <th>Nom</th><th>DataNaissance</th><th>Malade</th><th>Score</th></tr>
+
+                    </thead>
+
+                    <tr th:each="p:${Listpatients}">
+                        <td th:text="${p.id}" > </td>
+                        <td th:text="${p.nom}" > </td>
+                        <td th:text="${p.dateNaissance}" > </td>
+                        <td th:text="${p.malade}" > </td>
+                        <td th:text="${p.score}" > </td>
+                        <td >
+                            <a onclick="javascript:return confirm('Are you sure ?')" th:href="@{delete(id=${p.id},keyword=${keyword},page=${currentPage})}"
+                               class="btn btn-danger">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a  class="btn btn-primary"
+                                th:href="@{editPatient(id=${p.id})}">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                        </td>
+
+                    </tr>
+
+                </table>
+                <ul class="nav nav-pills">
+                    <li th:each="page,status:${pages}">
+                        <a th:class="${currentPage==status.index?'btn btn-info ms-1':'btn btn-outline-info ms-1'}"
+                           th:href="@{/index(page=${status.index},keyword=${keyword})}" th:text="${status.index}"></a>
+
+
+
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
     </div>
-    <div class="card-body">
-        <form method="get" th:action="@{index}">
-            <label>KeyWord:</label>
-            <input type="text" name="keyword" th:value="${keyword}">
-            <button type="submit" class="btn btn-info">
-            <i class="bi bi-search"></i></button>
-
-
-        </form>
-        <table class="table">
-        <thead>
-        <tr> <th>ID</th> <th>Nom</th><th>DataNaissance</th><th>Malade</th><th>Score</th></tr>
-
-        </thead>
-
-        <tr th:each="p:${Listpatients}">
-            <td th:text="${p.id}" > </td>
-            <td th:text="${p.nom}" > </td>
-            <td th:text="${p.dateNaissance}" > </td>
-            <td th:text="${p.malade}" > </td>
-            <td th:text="${p.score}" > </td>
-            <td >
-                <a onclick="javascript:return confirm('Are you sure ?')" th:href="@{delete(id=${p.id},keyword=${keyword},page=${currentPage})}"
-                        class="btn btn-danger">
-                    <i class="bi bi-trash"></i>
-                </a>
-            </td>
-
-        </tr>
-
-        </table>
-        <ul class="nav nav-pills">
-            <li th:each="page,status:${pages}">
-                <a th:class="${currentPage==status.index?'btn btn-info ms-1':'btn btn-outline-info ms-1'}"
-                   th:href="@{/index(page=${status.index},keyword=${keyword})}" th:text="${status.index}"></a>
-
-
-
-            </li>
-        </ul>
-
-    </div>
-
-</div>
 </div>
 </div>
 </body>

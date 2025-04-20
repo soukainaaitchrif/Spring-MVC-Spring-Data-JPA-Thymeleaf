@@ -44,7 +44,11 @@ public class PatientController {
 
     }
 
-    @GetMapping("/formpatients")
+
+
+
+
+    @GetMapping("/formPatients")
     public String formpatients(Model model){
         model.addAttribute("patient",new Patient());
        return "formPatients";
@@ -52,12 +56,22 @@ public class PatientController {
     }
 
     @PostMapping(path="/save")
-    public String save(Model model , @Valid Patient patient , BindingResult bindingResult){
-         if(bindingResult.hasErrors()){
-             return "formPatients";
-         }
+    public String save(Model model , @Valid Patient patient , BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "formPatients";
+        }
+
 
      patientRepository.save(patient);
       return "formPatients";
     }
+
+
+    @GetMapping("/editPatient")
+    public String editPatient(@RequestParam(name = "id") Long id, Model model){
+        Patient patient=patientRepository.findById(id).get();
+        model.addAttribute("patient",patient);
+        return "editPatient";
+    }
 }
+

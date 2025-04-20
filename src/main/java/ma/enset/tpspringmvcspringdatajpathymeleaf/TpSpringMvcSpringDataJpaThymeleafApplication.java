@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,4 +28,6 @@ public class TpSpringMvcSpringDataJpaThymeleafApplication implements CommandLine
         // patientRepository.save(new Patient(null,"aitchrif2",sdf.parse("2005-03-16"),false,20));
      // patientRepository.save(new Patient(null,"lucas",sdf.parse("2005-04-16"),false,30));
     }
+
+
 }
