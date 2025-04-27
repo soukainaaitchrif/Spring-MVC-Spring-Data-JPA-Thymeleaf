@@ -28,6 +28,24 @@ public class TpSpringMvcSpringDataJpaThymeleafApplication implements CommandLine
         // patientRepository.save(new Patient(null,"aitchrif2",sdf.parse("2005-03-16"),false,20));
      // patientRepository.save(new Patient(null,"lucas",sdf.parse("2005-04-16"),false,30));
     }
+    @Bean
+ 	CommandLineRunner commandLineRunner(JdbcUserDetailsManager userDetailsManager) {
+ 		return args -> {
+ 			userDetailsManager.createUser(
+ 					org.springframework.security.core.userdetails.User.withUsername("user")
+ 							.password(passwordEncoder().encode("1234"))
+ 							.roles("USER")
+ 							.build()
+ 			);
+ 			userDetailsManager.createUser(
+ 					org.springframework.security.core.userdetails.User.withUsername("admin")
+ 							.password(passwordEncoder().encode("1234"))
+ 							.roles("USER", "ADMIN")
+ 							.build()
+ 			);
+ 		};
+
+        
 
 
 }
